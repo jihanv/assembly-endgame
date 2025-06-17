@@ -49,15 +49,12 @@ section.game-status>h2 {
 }
 
 .languages {
-  max-width: 350px;
-  height: 51.5px;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5px;
-  align-content: start;
-  line-height: 1;
-  align-items: center;
+  gap: 5px;
   justify-content: center;
+  max-width: 350px;
+  margin-bottom: 36px;
 }
 
 .language {
@@ -66,4 +63,22 @@ section.game-status>h2 {
   border-radius: 3px;
   font-weight: 700;
   font-size: 14px;
+
+}
+
+.word {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.letter {
+  width: 40px;
+  height: 40px;
+  background-color: #323232;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  border-bottom: 1px solid #F9F4DA;
 }

@@ -1,11 +1,10 @@
-import React from "react"
 import './App.css'
 import { languages } from "./languages.js"
+import { useState } from "react"
 /**
  * Goal: Build out the main parts of our app
  * 
  * Challenge: 
- * 1. Save a "currentWord" in state. Initialize as "react".
  * 2. Map over the letters of the word (you'll need to turn 
  *    the string into an array of letters first) and display
  *    each one as a <span>. Capitalize the letters when
@@ -13,10 +12,12 @@ import { languages } from "./languages.js"
  * 3. Style to look like the design. You can get the underline 
  *    effect on the box using `border-bottom`.
  */
+
 export default function AssemblyEndgame() {
   const languageList = languages.map(language => <span key={language.name} className="language" style={{
           backgroundColor:language.backgroundColor,
           color: language.color}}>{language.name}</span>)
+  const [currentWord, setCurrentWord] = useState("react")
   return (
     <main>
       <header>
@@ -29,6 +30,11 @@ export default function AssemblyEndgame() {
       </section>
       <section className="languages">
         {languageList}
+      </section>
+      <section className="word">
+        {currentWord.split("").map((letter, index) => 
+          <span key={index} className="letter">{letter.toUpperCase()}</span>
+        )}
       </section>
     </main>
   )
