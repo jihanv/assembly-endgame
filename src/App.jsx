@@ -7,6 +7,17 @@ export default function AssemblyEndgame() {
 
   const [currentWord, setCurrentWord] = useState("react");
 
+  const [guessedLetters, setGuessedLetters] = useState([])
+
+  console.log(guessedLetters)
+
+  function addGuessedLetter(letter) {
+    setGuessedLetters(prevLetters => 
+      prevLetters.includes(letter)? prevLetters : [...prevLetters, letter]
+    )
+    console.log(guessedLetters)
+  }
+
   const languageList = languages.map((language) => (
     <span
       key={language.name}
@@ -21,15 +32,15 @@ export default function AssemblyEndgame() {
   ));
 
   const letterElements = currentWord.split("").map((letter, index) => (
-          <span key={index} className="letter">
-            {letter.toUpperCase()}
-          </span>
-        ))
+    <span key={index} className="letter">
+      {letter.toUpperCase()}
+    </span>
+  ))
 
   const keys = alphabet.split("").map((key, index) => (
-    <span key={index} className="key">
+    <button onClick={() => addGuessedLetter(key)} key={index} className="key">
       {key.toUpperCase()}
-    </span>
+    </button>
   ));
 
   return (
