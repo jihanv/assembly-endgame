@@ -11,43 +11,12 @@ export default function AssemblyEndgame() {
   const [guessedLetters, setGuessedLetters] = useState([]);
 
   function addGuessedLetter(letter) {
-    let inWord = false;
     setGuessedLetters((prevLetters) =>
       prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter]
     );
-    if (currentWord.split("").includes(letter.toLowerCase())) {
-      inWord = true;
-    }
-    changeKeyboard(letter, inWord);
+
   }
 
-  function changeKeyboard(letter, inWord) {
-    console.log("Changing keyboard");
-    const newButtonClasses = clsx({
-      key: true,
-      correct: inWord,
-      incorrect: !inWord,
-    });
-    console.log(newButtonClasses);
-    setPressedKey((prevKeyboard) => {
-      const newkyboard = prevKeyboard.map((key) => {
-        if (key.props["data-character"] === letter.toUpperCase()) {
-          return (
-            <button
-              onClick={() => addGuessedLetter(key)}
-              key={key.index}
-              className={newButtonClasses}
-              data-character={letter.toUpperCase()}
-            >
-              {letter.toUpperCase()}
-            </button>
-          );
-        }
-        return key;
-      });
-      return newkyboard;
-    });
-  }
   const languageList = languages.map((language) => (
     <span
       key={language.name}
@@ -68,20 +37,25 @@ export default function AssemblyEndgame() {
   ));
 
   const keys = alphabet.split("").map((key, index) => {
-    const buttonClass = clsx("key");
+    const isGuessed = guessedLetters.includes(key)
+    const isCorrect = isGuessed && currentWord.includes(key)
+    const isWrong = isGuessed && !currentWord.includes(key)
+    const buttonClass = clsx({
+      key: true,
+      correct: isCorrect,
+      incorrect: isWrong
+    })
     return (
       <button
         onClick={() => addGuessedLetter(key)}
         key={index}
         className={buttonClass}
-        data-character={key.toUpperCase()}
       >
         {key.toUpperCase()}
       </button>
     );
   });
 
-  const [pressedKey, setPressedKey] = useState(keys);
   return (
     <main>
       <header>
@@ -97,7 +71,7 @@ export default function AssemblyEndgame() {
       </section>
       <section className="languages">{languageList}</section>
       <section className="word">{letterElements}</section>
-      <section className="keyboard">{pressedKey}</section>
+      <section className="keyboard">{keys}</section>
       <button className="new-game">New Game</button>
     </main>
   );

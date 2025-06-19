@@ -119,10 +119,10 @@ button.new-game {
   cursor: pointer;
 }
 
-.correct {
+button.correct {
   background: #10A95B;
 }
 
-.incorrect {
+button.incorrect {
   background: #EC5D49;
 }
