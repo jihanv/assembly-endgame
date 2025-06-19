@@ -81,6 +81,12 @@ section.game-status>h2 {
   align-items: center;
   font-size: 1.125rem;
   border-bottom: 1px solid #F9F4DA;
+
+}
+
+.hidden {
+  color: transparent;
+  user-select: none;
 }
 
 .keyboard {
@@ -123,6 +129,6 @@ button.correct {
   background: #10A95B;
 }
 
-button.incorrect {
+.incorrect {
   background: #EC5D49;
 }

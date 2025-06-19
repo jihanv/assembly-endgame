@@ -30,11 +30,20 @@ export default function AssemblyEndgame() {
     </span>
   ));
 
-  const letterElements = currentWord.split("").map((letter, index) => (
-    <span key={index} className="letter">
-      {letter.toUpperCase()}
-    </span>
-  ));
+  const letterElements = currentWord.split("").map((letter, index) => {
+    const isGuessed = guessedLetters.includes(letter)
+    const isCorrect = isGuessed && currentWord.includes(letter)
+
+    const letterElementClass = clsx({
+      letter: true,
+      hidden: !isCorrect,
+    })
+    return (
+      <span key={index} className={letterElementClass}>
+        {letter.toUpperCase()}
+      </span>
+    )
+  });
 
   const keys = alphabet.split("").map((key, index) => {
     const isGuessed = guessedLetters.includes(key)
