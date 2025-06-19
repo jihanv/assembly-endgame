@@ -10,6 +10,11 @@ export default function AssemblyEndgame() {
 
   const [guessedLetters, setGuessedLetters] = useState([]);
 
+  // Derived values
+    const wrongGuessCount = 
+        guessedLetters.filter(letter => !currentWord.includes(letter)).length
+    console.log(wrongGuessCount)
+
   function addGuessedLetter(letter) {
     setGuessedLetters((prevLetters) =>
       prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter]
