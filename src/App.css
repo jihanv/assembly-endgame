@@ -118,3 +118,11 @@ button.new-game {
   margin-inline: auto;
   cursor: pointer;
 }
+
+.correct {
+  background: #10A95B;
+}
+
+.incorrect {
+  background: #EC5D49;
+}
