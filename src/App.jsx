@@ -33,14 +33,18 @@ export default function AssemblyEndgame() {
         )
     }
 
-    const languageElements = languages.map(lang => {
+    const languageElements = languages.map((lang, index) => {
         const styles = {
             backgroundColor: lang.backgroundColor,
             color: lang.color
         }
+        const chipClasses = clsx({
+          chip: true,
+          lost: index < wrongGuessCount ? true : false
+        })
         return (
             <span
-                className="chip"
+                className={chipClasses}
                 style={styles}
                 key={lang.name}
             >
