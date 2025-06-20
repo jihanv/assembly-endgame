@@ -10,8 +10,9 @@ export default function AssemblyEndgame() {
     // Derived values
     const wrongGuessCount = 
         guessedLetters.filter(letter => !currentWord.includes(letter)).length
-    
-        const isGameOver = wrongGuessCount >= languages.length ? true : false;
+  
+        const isGameWon = currentWord.split("").every(letter => guessedLetters.includes(letter))
+        const isGameOver = (wrongGuessCount >= languages.length) || isGameWon ? true : false;
     // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
