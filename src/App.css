@@ -9,8 +9,12 @@ body {
   color: #D9D9D9;
   padding: 20px;
   height: 100vh;
+}
+
+main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -27,19 +31,19 @@ header>p {
   font-size: 0.875rem;
   max-width: 350px;
   color: #8E8E8E;
-  margin: auto;
 }
 
 section.game-status {
-
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #F9F4DA;
+  width: 100%;
+  max-width: 350px;
+  min-height: 60px;
   border-radius: 4px;
   margin-block: 30px;
-  min-height: 58px;
-  min-width: 352px;
+
 }
 
 section.game-status.won {
@@ -51,12 +55,12 @@ section.game-status.lost {
 }
 
 section.game-status>p {
-  margin: auto;
+  margin: 5px;
 }
 
 section.game-status>h2 {
   font-size: 1.25rem;
-  margin: auto;
+  margin: 5px
 }
 
 section.language-chips {
@@ -66,7 +70,6 @@ section.language-chips {
   justify-content: center;
   max-width: 350px;
   margin-bottom: 36px;
-  margin: 20px auto;
 }
 
 span.chip {
