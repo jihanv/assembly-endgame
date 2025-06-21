@@ -54,13 +54,21 @@ section.game-status.lost {
   background-color: #BA2A2A;
 }
 
+section.game-status.missed {
+  background: #7A5EA7;
+  border: 1px dashed #323232;
+  border-radius: 0px;
+  align-items: center;
+  justify-content: center;
+}
+
 section.game-status>p {
-  margin: 5px;
+  margin: auto;
 }
 
 section.game-status>h2 {
   font-size: 1.25rem;
-  margin: 5px
+  margin: auto;
 }
 
 section.language-chips {

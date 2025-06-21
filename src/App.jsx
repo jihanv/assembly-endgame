@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { clsx } from "clsx";
 import { languages } from "./languages";
+import { getFarewellText } from "./utils";
 
 export default function AssemblyEndgame() {
   // State values
@@ -42,8 +43,6 @@ export default function AssemblyEndgame() {
     );
   });
 
-  console.log(languages.length);
-
   const letterElements = currentWord
     .split("")
     .map((letter, index) => (
@@ -72,10 +71,40 @@ export default function AssemblyEndgame() {
     );
   });
 
+  const recentGuess = guessedLetters[guessedLetters.length - 1]
+  const missedGuess = !currentWord.split("").includes(recentGuess) && guessedLetters.length!== 0
   const gameStatusClass = clsx( "game-status", {
     won: isGameWon,
-    lost: isGameLost
+    lost: isGameLost,
+    missed: missedGuess,
   })
+
+      function renderGameStatus() {
+        if (!isGameOver) {
+            if(missedGuess){
+              return getFarewellText()
+            }
+            else{
+              return null
+            }
+        }
+
+        if (isGameWon) {
+            return (
+                <>
+                    <h2>You win!</h2>
+                    <p>Well done! 🎉</p>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly 😭</p>
+                </>
+            )
+        }
+    }
   return (
     <main>
       <header>
@@ -86,20 +115,7 @@ export default function AssemblyEndgame() {
         </p>
       </header>
       <section className={gameStatusClass}>
-        {isGameOver ? (
-          isGameWon ?
-            (<>
-              <h2>You win!</h2>
-              <p>Well done!</p>
-            </>)
-            :
-            (
-              <>
-                <h2>Game over!</h2>
-                <p>You lost! Better start learning Assembly 😭</p>
-              </>
-            )
-        ) : null}
+        {renderGameStatus()}
       </section>
       <section className="language-chips">{languageElements}</section>
       <section className="word">{letterElements}</section>
